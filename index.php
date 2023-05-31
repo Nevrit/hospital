@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-6">
-                        <img src="images/doctor.png" width="100%" alt="">
+                        <img src="images/doc.png" width="100%" alt="">
                     </div>
                 </div>
 

@@ -67,32 +67,32 @@
                 Inscrivez-vous
             </h2>
             <div class="col-lg-12">
-                <form>
+                <form action="submit.php" method="GET">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="first-name" class="form-label">Prénom</label>
-                            <input type="text" class="form-control" id="first-name" placeholder="Entrez votre prénom">
+                            <input type="text" class="form-control" id="first-name" name="first-name" placeholder="Entrez votre prénom">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="last-name" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="last-name" placeholder="Entrez votre nom">
+                            <input type="text" class="form-control" id="last-name" name="last-name" placeholder="Entrez votre nom">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Entrez votre email">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="contact" class="form-label">Contact</label>
-                            <input type="tel" class="form-control" id="contact"
+                            <input type="tel" class="form-control" id="contact" name="contact" 
                                 placeholder="Entrez votre numéro de contact">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="address" class="form-label">Adresse</label>
-                            <input type="text" class="form-control" id="address" placeholder="Entrez votre adresse">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Entrez votre adresse">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="blood-group" class="form-label">Groupe sanguin</label>
