@@ -20,40 +20,21 @@
     <?php include('header.php'); ?>
     <!----------------------------------------------- INSERTION DU CODE BOOSTRAP NAVBAR -------------------------------------------------------------------- -->
 
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron-sign jumbotron-fluid">
         <div class="container-fluid">
-            <div class="container mt-5">
+            <div class="container">
                 <div class="row">
                     <div class="col-xs-6 col-md-6">
-                        <h2 class="bold">
-                            Medicio medical group
-                        </h2>
-                        <h3 class="light">
-                            Provide best quality healthcare for you
-                        </h3>
                         <div class="plan">
+                            <h3>
+                                <strong>Connectez-vous</strong>
+                            </h3>
                             <p>
-                                <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
-                                <span class="contact">
-                                    <strong>Affordable monthly premium packages</strong> <br />
-                                    Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
-                            </p>
-                            <p>
-                                <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
-                                <span class="contact">
-                                    <strong>Affordable monthly premium packages</strong> <br />
-                                    Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
-                            </p>
-                            <p>
-                                <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
-                                <span class="contact">
-                                    <strong>Affordable monthly premium packages</strong> <br />
-                                    Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
+                                    afin d'accéder à votre espace
                             </p>
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-6">
-                        <img src="images/doctor.png" width="100%" alt="">
                     </div>
                 </div>
 

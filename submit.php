@@ -66,8 +66,15 @@
             <h1>Message bien reçu !</h1>
 
             <?php 
-                $firstName = $_GET['first-name'];
-                $lastName = $_GET['last-name']
+            $firstName = $_GET['first-name'];
+            $lastName = $_GET['last-name']
+            if (!isset($_GET['email']) || !isset($_GET['message']))
+            {
+                echo('Il faut un email et un message pour soumettre le formulaire.');
+                
+    // Arrête l'exécution de PHP
+                return;
+            }
             ?>
 
             <div class="card">

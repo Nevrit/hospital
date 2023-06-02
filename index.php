@@ -216,7 +216,7 @@
         <div class="container-fluid background-image">
             <div class="container text-backrgound">
                 <h3 class="text-uppercase my-5">Titre</h3>
-                <p>
+                <p style="font-size: 2em;">
                     Travailler en confiance, c’est être sûr <br /> d’avoir les équipements qui <br /> répondront à vos
                     besoins
                     <br /> au moment

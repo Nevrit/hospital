@@ -9,7 +9,40 @@
     background-size: cover;
     min-height: 650px;
 }
-
+.jumbotron-doctor{
+    background-image: url('images/dentist.jpg');
+    background-position: center;
+    background-size: cover;
+    min-height: 600px;
+}
+.jumbotron-doctor .container-fluid .container .plan {
+    backdrop-filter: blur(10px);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+    padding: 15px;
+    border-radius: 18px;
+}
+.jumbotron-doctor .container {
+    padding-top: 100px;
+}
+.jumbotron-sign{
+    background-image: url('images/connexion.jpg');
+    background-position: center;
+    background-size: cover;
+    min-height: 600px;
+}
+.jumbotron-sign .container-fluid .container .plan {
+    backdrop-filter: blur(10px);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+    padding: 15px;
+    border-radius: 18px;
+}
+.jumbotron-sign .container {
+    padding-top: 100px;
+}
 section {
     margin-top: 60px;
 }
@@ -85,7 +118,7 @@ section {
 }
 
 .background-image {
-    background-image: url('images/bloc.jpg');
+    background-image: url('images/doctor.jpg');
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
