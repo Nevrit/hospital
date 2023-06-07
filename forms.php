@@ -117,8 +117,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="blood-group" class="form-label">Groupe sanguin*</label>
-                            <select class="form-select" id="blood-group" required name="blood-group[]">
+                            <label for="bloodGroup" class="form-label">Groupe sanguin*</label>
+                            <select class="form-select" id="blood-group" name="bloodGroup" required>
                                 <option value="" selected disabled>Choisissez votre groupe sanguin</option>
                                 <option value="A+">A+</option>
                                 <option value="A-">A-</option>

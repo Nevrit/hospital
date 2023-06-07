@@ -16,15 +16,56 @@
 </head>
 
 <body>
-    <?php
-    // Établir la connexion à la base de données
-    $db = new PDO('mysql:host=localhost;dbname=patient;charset=utf8', 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <h2 class="bold">
+                            Medicio medical group
+                        </h2>
+                        <h3 class="light">
+                            Provide best quality healthcare for you
+                        </h3>
+                        <div class="plan">
+                            <p>
+                                <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
+                                <span class="contact">
+                                    <strong>Affordable monthly premium packages</strong> <br />
+                                Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
+                            </p>
+                            <p>
+                                <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
+                                <span class="contact">
+                                    <strong>Affordable monthly premium packages</strong> <br />
+                                Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
+                            </p>
+                            <p>
+                                <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
+                                <span class="contact">
+                                    <strong>Affordable monthly premium packages</strong> <br />
+                                Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <img src="images/doctor.png" width="100%" alt="">
+                    </div>
+                </div>
 
-    if (!$db) {
+            </div>
+
+        </div>
+    </div>
+    <?php
+// Établir la connexion à la base de données
+    $pdo = new PDO('mysql:host=localhost;dbname=patient;charset=utf8', 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+
+    if (!$pdo) {
         die("Échec de la connexion à la base de données : " . $e->getMessage());
     }
 
-    // Récupérer les données du formulaire
+// Récupérer les données du formulaire
     $nom = $_POST['last-name'];
     $prenom = $_POST['first-name'];
     $adresse = $_POST['address'];
@@ -33,66 +74,42 @@
     $contact = $_POST['telephone'];
     $email = $_POST['email'];
     $allergie = $_POST['allergie'];
-    $groupe_sanguin = $_POST['blood-group'];
+    $groupe_sanguin = $_POST['bloodGroup'];
 
-    // Requête SQL pour insérer les données dans la table "patient"
-    $sql = "INSERT INTO user (nom, prenom, adresse, age, sexe, telephone, email, allergie, groupe_sanguin) VALUES ('$nom', '$prenom', '$adresse', '$age', '$gender', '$contact', '$email', '$allergie', '$groupe_sanguin')";
+// Vérifier si l'utilisateur existe déjà
+    $verify = $pdo->prepare("SELECT * FROM user WHERE email = :email OR telephone = :telephone");
+    $verify->execute(['email' => $email, 'telephone' => $contact]);
+    $user = $verify->fetch(PDO::FETCH_ASSOC);
 
-    if ($db->exec($sql)) {
-        echo "Inscription réussie !";
+    if ($user) {
+    // Afficher un message d'erreur
+        echo "L'utilisateur existe déjà. Veuillez utiliser un autre email ou numéro de téléphone.";
     } else {
-        echo "Erreur lors de l'inscription : " . $db->errorInfo()[2];
-    };
-?>
+    // Requête SQL pour insérer les données dans la table "user"
+        $sql = "INSERT INTO user (nom, prenom, adresse, age, sexe, telephone, email, allergie, groupe_sanguin) 
+        VALUES (:nom, :prenom, :adresse, :age, :sexe, :telephone, :email, :allergie, :groupe_sanguin)";
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container-fluid">
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-xs-6 col-md-6">
-                    <h2 class="bold">
-                        Medicio medical group
-                    </h2>
-                    <h3 class="light">
-                        Provide best quality healthcare for you
-                    </h3>
-                    <div class="plan">
-                        <p>
-                            <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
-                            <span class="contact">
-                                <strong>Affordable monthly premium packages</strong> <br />
-                            Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
-                        </p>
-                        <p>
-                            <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
-                            <span class="contact">
-                                <strong>Affordable monthly premium packages</strong> <br />
-                            Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
-                        </p>
-                        <p>
-                            <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
-                            <span class="contact">
-                                <strong>Affordable monthly premium packages</strong> <br />
-                            Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-6">
-                    <img src="images/doctor.png" width="100%" alt="">
-                </div>
-            </div>
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'adresse' => $adresse,
+            'age' => $age,
+            'sexe' => $gender,
+            'telephone' => $contact,
+            'email' => $email,
+            'allergie' => $allergie,
+            'groupe_sanguin' => $groupe_sanguin
+        ]);
 
-        </div>
-
-    </div>
-</div>
-<section>
-    <div class="container text-center">
-        <h1>Message bien reçu !</h1>
+    // Afficher un message de succès
+        <section>
+        <div class="container text-center">
+        <h1>Inscription réussie !</h1>
 
         <?php 
-        $firstName = $_POST['first-name'];
-        $lastName = $_POST['last-name'];
+        $nom = $_POST['last-name'];
+        $prenom = $_POST['first-name'];
         if (!isset($_POST['email']) || !isset($_POST['message'])) {
             echo('Il faut un email et un message pour soumettre le formulaire.');
 
@@ -110,6 +127,9 @@
         </div>
     </div>
 </section>
+
+}
+?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
