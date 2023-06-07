@@ -80,12 +80,19 @@
     $email = $_POST['email'];
     $allergie = $_POST['allergie'];
     $groupe_sanguin = $_POST['bloodGroup'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirm_password'];
 
     // Vérifier si l'utilisateur existe déjà
     $verify = $pdo->prepare("SELECT * FROM user WHERE email = :email OR telephone = :telephone");
     $verify->execute(['email' => $email, 'telephone' => $contact]);
     $user = $verify->fetch(PDO::FETCH_ASSOC);
 
+    if ($password !== $confirmPassword) {
+        echo "Les mots de passe ne correspondent pas.";
+        // Gérer l'erreur ou rediriger l'utilisateur vers le formulaire d'inscription avec un message d'erreur
+        exit;
+    }
     if ($user) {
         // Afficher un message d'erreur si l'utilisateur existe déjà
         ?>
@@ -104,8 +111,8 @@
         <?php
     } else {
         // Requête SQL pour insérer les données dans la table "user"
-        $sql = "INSERT INTO user (nom, prenom, adresse, age, sexe, telephone, email, allergie, groupe_sanguin) 
-        VALUES (:nom, :prenom, :adresse, :age, :sexe, :telephone, :email, :allergie, :groupe_sanguin)";
+        $sql = "INSERT INTO user (nom, prenom, adresse, age, sexe, telephone, email, allergie, groupe_sanguin, password, confirmPassword) 
+        VALUES (:nom, :prenom, :adresse, :age, :sexe, :telephone, :email, :allergie, :groupe_sanguin, :password, :confirmPassword)";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
@@ -117,7 +124,10 @@
             'telephone' => $contact,
             'email' => $email,
             'allergie' => $allergie,
-            'groupe_sanguin' => $groupe_sanguin
+            'groupe_sanguin' => $groupe_sanguin,
+            'password' => $password,
+            'confirmPassword' => $confirmPassword,
+
         ]);
 
         // Afficher un message de succès

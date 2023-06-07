@@ -130,6 +130,16 @@
                                 <option value="O-">O-</option>
                             </select>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="password" class="form-label">Mot de passe*</label>
+                            <input type="password" class="form-control" id="password" required name="password" placeholder="Entrez un mot de passe">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="confirm_password" class="form-label">Retapez votre mot de passe*</label>
+                            <input type="password" class="form-control" id="confirm_password" required name="confirm_password" placeholder="Confirmez votre mot de passe">
+                        </div>
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Envoyer</button>
