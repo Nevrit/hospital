@@ -16,6 +16,10 @@
 </head>
 
 <body>
+    <!----------------------------------------------- INSERTION DU CODE BOOSTRAP NAVBAR -------------------------------------------------------------------- -->
+    <?php include('header.php'); ?>
+    <!----------------------------------------------- INSERTION DU CODE BOOSTRAP NAVBAR -------------------------------------------------------------------- -->
+
     <div class="jumbotron jumbotron-fluid">
         <div class="container-fluid">
             <div class="container mt-5">
@@ -32,19 +36,22 @@
                                 <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
                                 <span class="contact">
                                     <strong>Affordable monthly premium packages</strong> <br />
-                                Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
+                                    Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis
+                                </span>
                             </p>
                             <p>
                                 <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
                                 <span class="contact">
                                     <strong>Affordable monthly premium packages</strong> <br />
-                                Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
+                                    Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis
+                                </span>
                             </p>
                             <p>
                                 <span class="awesome"><i class="fa-regular fa-circle-check"></i></span>
                                 <span class="contact">
                                     <strong>Affordable monthly premium packages</strong> <br />
-                                Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis </span>
+                                    Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -52,20 +59,18 @@
                         <img src="images/doctor.png" width="100%" alt="">
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
     <?php
-// Établir la connexion à la base de données
+    // Établir la connexion à la base de données
     $pdo = new PDO('mysql:host=localhost;dbname=patient;charset=utf8', 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     if (!$pdo) {
         die("Échec de la connexion à la base de données : " . $e->getMessage());
     }
 
-// Récupérer les données du formulaire
+    // Récupérer les données du formulaire
     $nom = $_POST['last-name'];
     $prenom = $_POST['first-name'];
     $adresse = $_POST['address'];
@@ -76,16 +81,29 @@
     $allergie = $_POST['allergie'];
     $groupe_sanguin = $_POST['bloodGroup'];
 
-// Vérifier si l'utilisateur existe déjà
+    // Vérifier si l'utilisateur existe déjà
     $verify = $pdo->prepare("SELECT * FROM user WHERE email = :email OR telephone = :telephone");
     $verify->execute(['email' => $email, 'telephone' => $contact]);
     $user = $verify->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-    // Afficher un message d'erreur
-        echo "L'utilisateur existe déjà. Veuillez utiliser un autre email ou numéro de téléphone.";
+        // Afficher un message d'erreur si l'utilisateur existe déjà
+        ?>
+        <section>
+            <div class="container text-center">
+                <h1>Votre inscription a échouée !</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text"><b>Félicitations</b> : <?php echo $nom . ' ' . $prenom; ?> <b>votre inscription n'a bien été prise en compte
+                            <br />veuillez vérifier votre adresse mail et/ou votre numéro de téléphone </b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <?php
     } else {
-    // Requête SQL pour insérer les données dans la table "user"
+        // Requête SQL pour insérer les données dans la table "user"
         $sql = "INSERT INTO user (nom, prenom, adresse, age, sexe, telephone, email, allergie, groupe_sanguin) 
         VALUES (:nom, :prenom, :adresse, :age, :sexe, :telephone, :email, :allergie, :groupe_sanguin)";
 
@@ -102,38 +120,25 @@
             'groupe_sanguin' => $groupe_sanguin
         ]);
 
-    // Afficher un message de succès
-        <section>
-        <div class="container text-center">
-        <h1>Inscription réussie !</h1>
-
-        <?php 
-        $nom = $_POST['last-name'];
-        $prenom = $_POST['first-name'];
-        if (!isset($_POST['email']) || !isset($_POST['message'])) {
-            echo('Il faut un email et un message pour soumettre le formulaire.');
-
-                // Arrête l'exécution de PHP
-            return;
-        }
+        // Afficher un message de succès
         ?>
-
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Rappel de vos informations</h5>
-                <p class="card-text"><b>Nom</b> : <?php echo $lastName; ?></p>
-                <p class="card-text"><b>Prénom</b> : <?php echo $firstName ; ?></p>
+        <section>
+            <div class="container text-center">
+                <h1>Inscription réussie !</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text"><b>Félicitations</b> : <?php echo $nom . ' ' . $prenom; ?> <b>votre inscription a bien été prise en compte</b></p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+        <?php
+    }
+    ?>
 
-}
-?>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
