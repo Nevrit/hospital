@@ -44,28 +44,20 @@
     </div>
     <section>
         <div class="container">
-            <h2 class="text-center mb-5">
-                Inscrivez-vous
-            </h2>
             <div class="center-div">
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Connexion</h5>
-                            <form>
+                            <h5 class="card-title">Connectez-vous</h5>
+                            <form action="succes_connection.php" method="POST">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Adresse mail</label>
-                                    <input type="email" class="form-control" id="email"
+                                    <input type="email" class="form-control" id="email" name="email" 
                                         placeholder="Entrez votre adresse mail">
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Mot de passe</label>
-                                    <input type="password" class="form-control" id="password"
-                                        placeholder="Entrez votre mot de passe">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Confirmer mot de passe</label>
-                                    <input type="password" class="form-control" id="password"
+                                    <input type="password" class="form-control" id="password" name="password" 
                                         placeholder="Entrez votre mot de passe">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Se connecter</button>
